@@ -1,8 +1,8 @@
 #include<iostream>
 using namespace std;
 int main(){
-    int a,b,c;
-    cin>>a>>b>>c;
+    // int a,b,c;
+    // cin>>a>>b>>c;
     // if(a>b){
     //     cout<<a<<" is greater "<<endl;
     // }else{
@@ -17,5 +17,16 @@ int main(){
     // else { cout<<c<<" Greater"<<endl;}
     // //ternary operator
     // bool isAdult= (a>=18)?true:false;
+    int day;
+    cin >> day;
+    switch (day)
+    {
+    case 1:
+        cout<<"Monday";
+        break;
     
+    default:
+        cout<<"Invalid";
+        break;
+    }
 }
