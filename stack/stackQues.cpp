@@ -8,11 +8,11 @@ struct Node{
 
 };
 
-bool isempty(){
+Node* top = nullptr;
 
+bool isempty(Node* top) {
     return top == nullptr;
-
-};
+}
 
 void push( Node* &top , int value){
     Node* newNode = new Node();
@@ -36,6 +36,22 @@ void pop(Node*& top){
     delete(temp);
 }
 
-int main(){
+int peek(Node* top) {
+    if (isempty(top)) {
+        cout << "Stack underflow";
+        return -1;
+    }
+    return top->data;
+}
 
+int main(){
+    Node* stacktop = nullptr;
+    push(stacktop,10);
+    push(stacktop,20);
+    push(stacktop,30);
+
+    cout<<"Top ele is ";
+    peek(stacktop);
+    pop(stacktop);
+    return 0;
 }
