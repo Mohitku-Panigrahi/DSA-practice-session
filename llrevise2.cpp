@@ -72,6 +72,11 @@ void display(Node* head)
 
 }
 
+void reverse(Node*& head)
+{
+    
+}
+
 int main()
 {
     Node* head = NULL;
