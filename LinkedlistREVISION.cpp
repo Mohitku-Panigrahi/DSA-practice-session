@@ -21,7 +21,7 @@ void insert_node(int n){
     temp -> next=new_node;   
     while(temp->next=NULL) {
         temp->next= head;
-    } 
+    }
     void circularLL(int n){
         struct Node* new_node = new Node;
         new_node->data = int n;
@@ -35,7 +35,7 @@ void insert_node(int n){
     void TwoLL(){
         //cout length 
         //then divide it 
-    }
+    };
 
 }
 void ReverseNode(){
