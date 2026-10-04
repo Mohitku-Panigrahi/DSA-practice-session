@@ -3,6 +3,6 @@ using namespace std;
 int main(){
     hii
 }
-git add .
-git commit -m " Rcc"
-git push
+// git add .
+// git commit -m " Rcc"
+// git push
