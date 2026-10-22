@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Discrete Mathematics – Midterm Handwritten Notes</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Kalam:wght@300;400;700&family=Patrick+Hand&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1b2a6b;
+  --red:#c62828;
+  --green:#1b7a3d;
+  --orange:#d9730d;
+  --purple:#6a1b9a;
+  --paper:#fffef6;
+  --line:#cfe3f3;
+  --margin:#f1a5a5;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:#e9e6da;
+  font-family:'Kalam','Patrick Hand',cursive;
+  color:var(--ink);
+  font-size:18px;
+  line-height:32px;
+  padding:20px 10px 50px;
+}
+.page{
+  max-width:900px;
+  margin:0 auto 28px;
+  background-color:var(--paper);
+  background-image:
+    linear-gradient(to right,transparent 62px,var(--margin) 62px,var(--margin) 64px,transparent 64px),
+    repeating-linear-gradient(to bottom,transparent 0,transparent 31px,var(--line) 31px,var(--line) 32px);
+  padding:32px 34px 32px 90px;
+  border-radius:4px;
+  box-shadow:0 6px 18px rgba(0,0,0,.25);
+  position:relative;
+}
+.page::before{
+  content:"";position:absolute;left:18px;top:60px;width:16px;height:16px;border-radius:50%;
+  background:#e9e6da;box-shadow:0 160px 0 #e9e6da,0 320px 0 #e9e6da,inset 1px 1px 3px rgba(0,0,0,.35);
+}
+.pgno{position:absolute;right:20px;bottom:8px;font-family:'Caveat',cursive;font-size:20px;color:#888}
+
+/* Cover */
+.cover{text-align:center;padding-top:30px}
+.cover h1{font-family:'Caveat',cursive;font-size:64px;line-height:70px;color:var(--red);transform:rotate(-2deg);margin:20px 0 6px}
+.cover h2{font-family:'Caveat',cursive;font-size:34px;line-height:40px;color:var(--ink);margin-bottom:20px}
+.cover .tag{display:inline-block;border:3px double var(--green);padding:2px 22px;font-family:'Caveat',cursive;font-size:28px;color:var(--green);transform:rotate(1.5deg);margin:6px}
+.cover ul{list-style:none;margin:20px auto;max-width:520px;text-align:left}
+.cover li::before{content:"✦ ";color:var(--orange)}
+
+/* Headings */
+h2.unit{
+  font-family:'Caveat',cursive;font-size:44px;line-height:50px;color:#fff;
+  background:var(--ink);display:inline-block;padding:0 22px;border-radius:6px 22px 6px 22px;
+  transform:rotate(-1deg);margin:4px 0 10px;
+}
+h3{
+  font-family:'Caveat',cursive;font-size:32px;line-height:38px;color:var(--red);
+  margin:12px 0 4px;
+  background:linear-gradient(transparent 62%,#ffe66d 62%,#ffe66d 92%,transparent 92%);
+  display:inline-block;
+}
+h4{font-family:'Caveat',cursive;font-size:26px;line-height:32px;color:var(--purple);margin:6px 0 0;text-decoration:underline wavy #c9a7e0;text-underline-offset:5px}
+p{margin:0 0 2px}
+b,.b{font-weight:700}
+.r{color:var(--red);font-weight:700}
+.g{color:var(--green);font-weight:700}
+.o{color:var(--orange);font-weight:700}
+.p{color:var(--purple);font-weight:700}
+.hl{background:#fff176;padding:0 4px;border-radius:3px}
+.hl2{background:#b9f6ca;padding:0 4px;border-radius:3px}
+.hl3{background:#ffcdd2;padding:0 4px;border-radius:3px}
+ul,ol{margin:0 0 4px 26px}
+li{margin:0}
+.formula{
+  font-family:'Caveat',cursive;font-size:28px;line-height:36px;
+  text-align:center;border:2px solid var(--ink);border-radius:12px 4px 12px 4px;
+  background:#e8f0ff;padding:2px 12px;margin:8px 0;
+}
+.box{border:2px dashed var(--green);background:#eaf9ee;border-radius:8px;padding:2px 14px 4px;margin:10px 0}
+.box .t{font-family:'Caveat',cursive;font-size:26px;color:var(--green);display:block;line-height:32px}
+.warn{border:2px solid var(--red);background:#fdecec;border-radius:8px;padding:2px 14px 4px;margin:10px 0}
+.warn .t{font-family:'Caveat',cursive;font-size:26px;color:var(--red);display:block;line-height:32px}
+.ex{border-left:5px solid var(--orange);background:#fff4e0;padding:2px 14px 4px;margin:10px 0;border-radius:0 8px 8px 0}
+.ex .t{font-family:'Caveat',cursive;font-size:26px;color:var(--orange);display:block;line-height:32px}
+.ans{display:inline-block;border:2px solid var(--green);color:var(--green);font-weight:700;padding:0 10px;border-radius:20px;background:#fff;margin:2px 0}
+.tip{border:2px dotted var(--purple);background:#f5e9fb;border-radius:8px;padding:2px 14px 4px;margin:10px 0}
+.tip .t{font-family:'Caveat',cursive;font-size:26px;color:var(--purple);display:block;line-height:32px}
+table{border-collapse:collapse;width:100%;margin:8px 0;font-size:16px;line-height:24px;background:rgba(255,255,255,.7)}
+th,td{border:1.5px solid var(--ink);padding:3px 8px;text-align:left;vertical-align:top}
+th{background:var(--ink);color:#fff;font-family:'Caveat',cursive;font-size:22px;font-weight:500}
+tr:nth-child(even) td{background:#f3f7ff}
+td.c,th.c{text-align:center}
+.two{display:flex;gap:18px;flex-wrap:wrap}
+.two>div{flex:1;min-width:260px}
+svg{max-width:100%;height:auto;display:block;margin:6px auto}
+svg text{font-family:'Kalam',cursive}
+.cap{text-align:center;font-family:'Caveat',cursive;font-size:22px;color:#666;line-height:26px}
+.star::before{content:"★ ";color:var(--orange)}
+.arrow::before{content:"➜ ";color:var(--red)}
+.chk::before{content:"☑ ";color:var(--green)}
+.small{font-size:15px;line-height:24px}
+.ul{text-decoration:underline;text-decoration-color:var(--red);text-decoration-thickness:2px;text-underline-offset:4px}
+@media (max-width:640px){
+  body{font-size:16px;line-height:30px}
+  .page{padding:24px 14px 28px 40px;background-image:
+    linear-gradient(to right,transparent 30px,var(--margin) 30px,var(--margin) 32px,transparent 32px),
+    repeating-linear-gradient(to bottom,transparent 0,transparent 29px,var(--line) 29px,var(--line) 30px)}
+  .page::before{display:none}
+  .cover h1{font-size:46px;line-height:52px}
+  h2.unit{font-size:34px}
+  .formula{font-size:22px}
+  table{font-size:14px}
+}
+@media print{
+  body{background:#fff;padding:0}
+  .page{box-shadow:none;page-break-after:always;margin:0 auto}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ COVER ============ -->
+<div class="page cover">
+  <div class="tag">Midterm Special ✎</div>
+  <h1>Discrete Mathematics</h1>
+  <h2>Handwritten Coaching Notes</h2>
+  <div class="tag">Unit I • Unit II • Unit III</div>
+  <ul>
+    <li><b>Unit I</b> – Logic &amp; Proofs</li>
+    <li><b>Unit II</b> – Recurrence Relations</li>
+    <li><b>Unit III</b> – Counting Principles &amp; Relations</li>
+  </ul>
+  <div class="box" style="max-width:560px;margin:20px auto;text-align:left">
+    <span class="t">How to study these notes</span>
+    <p class="chk">1st read: understand the idea &amp; read examples slowly.</p>
+    <p class="chk">2nd read: cover the solution &amp; solve it yourself.</p>
+    <p class="chk">Last night: use the "Rapid Revision" page only.</p>
+  </div>
+  <p style="font-family:'Caveat',cursive;font-size:26px;color:var(--purple)">Colour code: <span class="r">red = important</span>, <span class="g">green = answers</span>, <span class="o">orange = examples</span>, <span class="p">purple = tips</span></p>
+  <div class="pgno">1</div>
+</div>
+
+<!-- ============ UNIT I : PAGE 1 ============ -->
+<div class="page">
+  <h2 class="unit">UNIT I : Logic &amp; Proofs</h2>
+  <p>Logic = rules to decide <b>whether a statement is true</b> and <b>whether a conclusion follows</b>. Proofs use these rules.</p>
+
+  <h3>1. Propositions</h3>
+  <p>A <span class="r">proposition</span> = a declarative sentence that is <b>either True or False (not both)</b>.</p>
+  <table>
+    <tr><th>Sentence</th><th>Proposition?</th><th>Why</th></tr>
+    <tr><td>7 is a prime number.</td><td>Yes (False)</td><td>Has a truth value</td></tr>
+    <tr><td>2 + 3 = 5</td><td>Yes (True)</td><td>Definite truth value</td></tr>
+    <tr><td>What time is it?</td><td>No</td><td>Question</td></tr>
+    <tr><td>Please close the door.</td><td>No</td><td>Request</td></tr>
+    <tr><td>x + 2 = 7</td><td>Not yet</td><td>Depends on x</td></tr>
+    <tr><td>For every real x, x² ≥ 0</td><td>Yes (True)</td><td>Quantifier closes x</td></tr>
+  </table>
+
+  <h4>Logical operators</h4>
+  <table>
+    <tr><th>Symbol</th><th>Read as</th><th>True when…</th></tr>
+    <tr><td>¬p</td><td>not p</td><td>p is false</td></tr>
+    <tr><td>p ∧ q</td><td>p and q</td><td>both true (AND is strict)</td></tr>
+    <tr><td>p ∨ q</td><td>p or q</td><td>at least one true (inclusive)</td></tr>
+    <tr><td>p ⊕ q</td><td>XOR</td><td>exactly one true</td></tr>
+    <tr><td>p → q</td><td>if p then q</td><td>all rows except p=T, q=F</td></tr>
+    <tr><td>p ↔ q</td><td>p iff q</td><td>p and q have same value</td></tr>
+  </table>
+
+  <h4>Truth table</h4>
+  <table>
+    <tr><th class="c">p</th><th class="c">q</th><th class="c">¬p</th><th class="c">p∧q</th><th class="c">p∨q</th><th class="c">p⊕q</th><th class="c">p→q</th><th class="c">p↔q</th></tr>
+    <tr class="c"><td class="c">T</td><td class="c">T</td><td class="c">F</td><td class="c">T</td><td class="c">T</td><td class="c">F</td><td class="c">T</td><td class="c">T</td></tr>
+    <tr><td class="c">T</td><td class="c">F</td><td class="c">F</td><td class="c">F</td><td class="c">T</td><td class="c">T</td><td class="c r">F</td><td class="c">F</td></tr>
+    <tr><td class="c">F</td><td class="c">T</td><td class="c">T</td><td class="c">F</td><td class="c">T</td><td class="c">T</td><td class="c">T</td><td class="c">F</td></tr>
+    <tr><td class="c">F</td><td class="c">F</td><td class="c">T</td><td class="c">F</td><td class="c">F</td><td class="c">F</td><td class="c">T</td><td class="c">T</td></tr>
+  </table>
+  <div class="warn"><span class="t">Exam Alert !</span>
+    <p><b>p → q</b> is false in <span class="r">only ONE case</span>: p true, q false. A false premise makes the implication true.</p>
+  </div>
+  <div class="pgno">2</div>
+</div>
+
+<!-- ============ UNIT I : PAGE 2 ============ -->
+<div class="page">
+  <h3>2. Converse, Inverse, Contrapositive</h3>
+  <table>
+    <tr><th>Name</th><th>Form</th><th>Same as p → q?</th></tr>
+    <tr><td>Original</td><td>p → q</td><td>—</td></tr>
+    <tr><td>Converse</td><td>q → p</td><td>No (in general)</td></tr>
+    <tr><td>Inverse</td><td>¬p → ¬q</td><td>No (in general)</td></tr>
+    <tr><td>Contrapositive</td><td>¬q → ¬p</td><td class="g">YES – always equivalent</td></tr>
+  </table>
+  <div class="ex"><span class="t">Example: rain &amp; wet road</span>
+    <p>p = "It rains", q = "Road is wet".</p>
+    <p>• Original: If it rains, road is wet.</p>
+    <p>• Converse: If road is wet, it rains → can be <span class="r">false</span> (a hose!).</p>
+    <p>• Contrapositive: If road is not wet, it did not rain → <span class="g">same truth value</span>.</p>
+  </div>
+
+  <h3>3. English → Logic</h3>
+  <table>
+    <tr><th>English</th><th>Logic</th><th>Remember</th></tr>
+    <tr><td>p and q / p but q</td><td>p ∧ q</td><td>"but" = AND</td></tr>
+    <tr><td>if p, then q</td><td>p → q</td><td>p sufficient, q necessary</td></tr>
+    <tr><td><span class="r">p only if q</span></td><td>p → q</td><td>q is necessary for p</td></tr>
+    <tr><td><span class="r">p if q</span></td><td>q → p</td><td>q is sufficient for p</td></tr>
+    <tr><td>p iff q</td><td>p ↔ q</td><td>both directions</td></tr>
+    <tr><td>neither p nor q</td><td>¬p ∧ ¬q</td><td>both false</td></tr>
+    <tr><td>not both p and q</td><td>¬(p ∧ q)</td><td>at least one false</td></tr>
+  </table>
+  <div class="ex"><span class="t">Example</span>
+    <p>"You may enter <b>only if</b> you have a valid ID." E = enter, I = valid ID.</p>
+    <p><span class="ans">E → I</span></p>
+  </div>
+
+  <h3>4. Tautology, Contradiction, Contingency</h3>
+  <table>
+    <tr><th>Term</th><th>Meaning</th><th>Example</th></tr>
+    <tr><td>Tautology</td><td>Always True (column all T)</td><td>p ∨ ¬p</td></tr>
+    <tr><td>Contradiction</td><td>Always False (column all F)</td><td>p ∧ ¬p</td></tr>
+    <tr><td>Contingency</td><td>Some T, some F</td><td>p ∧ q</td></tr>
+    <tr><td>Satisfiable</td><td>True for at least one case</td><td>p ∨ q</td></tr>
+  </table>
+  <p><b>Precedence:</b> ( ) → ¬ → ∧ → ∨ → → → ↔ . <span class="p">Use brackets when in doubt!</span></p>
+  <div class="ex"><span class="t">Evaluate p → (q ∧ ¬p)</span>
+    <p>p=T,q=T: ¬p=F, q∧¬p=F, T→F = <span class="r">F</span>.</p>
+    <p>p=F,q=T: ¬p=T, q∧¬p=T, F→T = <span class="g">T</span>.</p>
+  </div>
+  <div class="pgno">3</div>
+</div>
+
+<!-- ============ UNIT I : PAGE 3 ============ -->
+<div class="page">
+  <h3>5. Logical Equivalences (p ≡ q)</h3>
+  <p>Two statements are equivalent if they have the <b>same truth value in every case</b>. Prove with a truth table or by applying laws step by step (name the law each time!).</p>
+  <table>
+    <tr><th>Law</th><th>Equivalence</th></tr>
+    <tr><td>Identity</td><td>p∧T ≡ p ; p∨F ≡ p</td></tr>
+    <tr><td>Domination</td><td>p∨T ≡ T ; p∧F ≡ F</td></tr>
+    <tr><td>Idempotent</td><td>p∨p ≡ p ; p∧p ≡ p</td></tr>
+    <tr><td>Double negation</td><td>¬(¬p) ≡ p</td></tr>
+    <tr><td>Commutative / Associative</td><td>order and grouping don't matter (same operator)</td></tr>
+    <tr><td>Distributive</td><td>p∧(q∨r) ≡ (p∧q)∨(p∧r) ; p∨(q∧r) ≡ (p∨q)∧(p∨r)</td></tr>
+    <tr><td class="r">De Morgan</td><td class="r">¬(p∧q) ≡ ¬p∨¬q ; ¬(p∨q) ≡ ¬p∧¬q</td></tr>
+    <tr><td>Absorption</td><td>p∨(p∧q) ≡ p ; p∧(p∨q) ≡ p</td></tr>
+    <tr><td>Negation</td><td>p∨¬p ≡ T ; p∧¬p ≡ F</td></tr>
+    <tr><td class="r">Implication</td><td class="r">p → q ≡ ¬p ∨ q</td></tr>
+    <tr><td>Contrapositive</td><td>p → q ≡ ¬q → ¬p</td></tr>
+    <tr><td>Biconditional</td><td>p↔q ≡ (p→q)∧(q→p) ≡ (p∧q)∨(¬p∧¬q)</td></tr>
+  </table>
+  <div class="ex"><span class="t">Simplify ¬(p → q)</span>
+    <p>1. p→q ≡ ¬p ∨ q (implication law)</p>
+    <p>2. ¬(¬p ∨ q) (negate whole)</p>
+    <p>3. ¬(¬p) ∧ ¬q (De Morgan)</p>
+    <p>4. p ∧ ¬q (double negation) <span class="ans">¬(p→q) ≡ p ∧ ¬q</span></p>
+  </div>
+  <div class="ex"><span class="t">Show p → q ≡ ¬p ∨ q</span>
+    <p>Truth table: p→q = T,T,F,T for rows TT,TF,FT,FF. ¬p∨q gives the same T,T,F,T. ✓ <span class="ans">Equivalent</span></p>
+  </div>
+  <div class="pgno">4</div>
+</div>
+
+<!-- ============ UNIT I : PAGE 4 ============ -->
+<div class="page">
+  <h3>6. Predicates &amp; Quantifiers</h3>
+  <p><b>Predicate</b> P(x): a statement with variable x, e.g. P(x): "x &gt; 3". <b>Domain</b> = values x may take.</p>
+  <table>
+    <tr><th>Symbol</th><th>Read as</th><th>Example</th></tr>
+    <tr><td>∀x P(x)</td><td>for every x</td><td>∀x∈ℤ, x² ≥ 0</td></tr>
+    <tr><td>∃x P(x)</td><td>there exists x</td><td>∃x∈ℤ, x² = 9</td></tr>
+    <tr><td>∃!x P(x)</td><td>exactly one x</td><td>∃!x∈ℤ, x+1 = 4</td></tr>
+  </table>
+  <div class="formula">¬(∀x P(x)) ≡ ∃x ¬P(x) &nbsp;&nbsp;|&nbsp;&nbsp; ¬(∃x P(x)) ≡ ∀x ¬P(x)</div>
+  <p class="arrow">To negate: <b>flip ∀ ↔ ∃</b> and <b>negate the predicate</b>.</p>
+  <div class="ex"><span class="t">Example</span>
+    <p>"Every student passed" → ∀x(Student(x) → Passed(x)).</p>
+    <p>Negation: ∃x(Student(x) ∧ ¬Passed(x)) = "at least one student did not pass".</p>
+    <p class="r">NOT "every student failed"! One counterexample is enough.</p>
+  </div>
+
+  <h4>Nested quantifiers — order matters!</h4>
+  <table>
+    <tr><th>Statement</th><th>Meaning</th></tr>
+    <tr><td>∀x ∃y P(x,y)</td><td>For each x some y (y may depend on x). Every student has <i>a</i> favourite book.</td></tr>
+    <tr><td>∃y ∀x P(x,y)</td><td>ONE y works for all x. One book liked by everyone.</td></tr>
+  </table>
+  <div class="ex"><span class="t">Negate ∀x ∃y P(x,y)</span>
+    <p>Flip first: ∃x ¬(∃y P(x,y)) → flip inner: ∃x ∀y ¬P(x,y).</p>
+    <p><span class="ans">¬(∀x∃y P) ≡ ∃x∀y ¬P</span></p>
+  </div>
+  <div class="warn"><span class="t">Common Mistake</span>
+    <p>Negation of "every x has some y" is NOT "every x has no y". It is "<b>there is an x for which no y works</b>".</p>
+  </div>
+  <div class="pgno">5</div>
+</div>
+
+<!-- ============ UNIT I : PAGE 5 ============ -->
+<div class="page">
+  <h3>7. Rules of Inference</h3>
+  <p>An argument is <b>valid</b> if the conclusion follows from the premises.</p>
+  <table>
+    <tr><th>Rule</th><th>Pattern (premises ⟹ conclusion)</th><th>Idea</th></tr>
+    <tr><td class="r">Modus Ponens</td><td>p, p→q ∴ q</td><td>p true &amp; p gives q</td></tr>
+    <tr><td class="r">Modus Tollens</td><td>¬q, p→q ∴ ¬p</td><td>q failed, so p didn't happen</td></tr>
+    <tr><td>Hypothetical Syllogism</td><td>p→q, q→r ∴ p→r</td><td>chain</td></tr>
+    <tr><td>Disjunctive Syllogism</td><td>p∨q, ¬p ∴ q</td><td>rule out one</td></tr>
+    <tr><td>Addition</td><td>p ∴ p∨q</td><td>add anything with OR</td></tr>
+    <tr><td>Simplification</td><td>p∧q ∴ p</td><td>take one part</td></tr>
+    <tr><td>Conjunction</td><td>p, q ∴ p∧q</td><td>combine facts</td></tr>
+    <tr><td>Resolution</td><td>p∨q, ¬p∨r ∴ q∨r</td><td>cancel p/¬p</td></tr>
+    <tr><td>Universal Instantiation</td><td>∀x P(x) ∴ P(c)</td><td>applies to any c</td></tr>
+    <tr><td>Existential Generalization</td><td>P(c) ∴ ∃x P(x)</td><td>witness ⇒ exists</td></tr>
+    <tr><td>Existential Instantiation</td><td>∃x P(x) ∴ P(c) for a <i>fresh</i> c</td><td>name a witness</td></tr>
+  </table>
+  <div class="warn"><span class="t">Two Invalid Forms (Fallacies)</span>
+    <p><span class="r">Affirming the consequent:</span> p→q, q ∴ p ✗ (q may be true for another reason)</p>
+    <p><span class="r">Denying the antecedent:</span> p→q, ¬p ∴ ¬q ✗</p>
+    <p class="small">Example: "If it rains, ground is wet. Ground is wet. So it rained." ✗ — a hose could have wet it.</p>
+  </div>
+
+  <h3>8. Introduction to Proofs</h3>
+  <ul>
+    <li><b>Theorem</b> – important proved statement; <b>Lemma</b> – helper result; <b>Corollary</b> – follows easily from a theorem; <b>Conjecture</b> – not yet proved.</li>
+    <li>For "if P then Q": P = hypothesis, Q = conclusion.</li>
+    <li class="r">Testing examples can never prove a universal claim!</li>
+  </ul>
+  <div class="pgno">6</div>
+</div>
+
+<!-- ============ UNIT I : PAGE 6 ============ -->
+<div class="page">
+  <h3>9. Proof Methods</h3>
+
+  <h4>(a) Direct Proof — assume P, derive Q</h4>
+  <div class="ex"><span class="t">Square of an even integer is even</span>
+    <p>Let n be even, n = 2k. Then n² = 4k² = 2(2k²), and 2k² is an integer, so n² is even. ∎</p>
+  </div>
+
+  <h4>(b) Contraposition — prove ¬Q → ¬P</h4>
+  <div class="ex"><span class="t">If n² is even, then n is even</span>
+    <p>Contrapositive: if n is odd then n² is odd. n = 2k+1 ⇒ n² = 4k²+4k+1 = 2(2k²+2k)+1 → odd. ∎</p>
+  </div>
+
+  <h4>(c) Vacuous &amp; Trivial Proofs</h4>
+  <table>
+    <tr><th>Type</th><th>When</th><th>Example</th></tr>
+    <tr><td>Vacuous</td><td>Hypothesis P is <b>always false</b> ⇒ P→Q true</td><td>"If n² &lt; 0 then n is odd" (no integer has n²&lt;0)</td></tr>
+    <tr><td>Trivial</td><td>Conclusion Q is <b>always true</b></td><td>"If n is even then n² ≥ 0"</td></tr>
+  </table>
+
+  <h4>(d) Contradiction — assume ¬S, reach an impossibility</h4>
+  <div class="ex"><span class="t">√2 is irrational</span>
+    <p>Assume √2 = p/q in lowest terms. Then p² = 2q² ⇒ p² even ⇒ p even, p = 2k.</p>
+    <p>So 4k² = 2q² ⇒ q² = 2k² ⇒ q even. Both even — contradicts "lowest terms". ∎</p>
+  </div>
+
+  <h4>(e) Proof by Cases</h4>
+  <div class="ex"><span class="t">n² + n is even for every integer n</span>
+    <p>Case 1: n even, n = 2k ⇒ 4k²+2k = 2(2k²+k) even.</p>
+    <p>Case 2: n odd ⇒ n+1 even, and n²+n = n(n+1) has an even factor ⇒ even. ∎</p>
+  </div>
+
+  <h4>(f) Proof of "iff" — prove BOTH directions</h4>
+  <div class="ex"><span class="t">n even ⇔ n² even</span>
+    <p>(⇒) n = 2k ⇒ n² = 2(2k²) even.</p>
+    <p>(⇐) By contrapositive: n odd ⇒ n² odd (shown above). Both hold. ∎</p>
+  </div>
+  <div class="pgno">7</div>
+</div>
+
+<!-- ============ UNIT I : PAGE 7 ============ -->
+<div class="page">
+  <h3>10. Counterexamples</h3>
+  <p>ONE counterexample disproves "for every x, P(x)".</p>
+  <table>
+    <tr><th>False claim</th><th>Counterexample</th></tr>
+    <tr><td>Every prime is odd</td><td>2 is prime and even</td></tr>
+    <tr><td>If ab is even, both a and b are even</td><td>a=2, b=3: ab=6 even, b odd</td></tr>
+    <tr><td>n² &gt; n for every integer n&gt;0</td><td>n=1: 1² = 1, not greater</td></tr>
+    <tr><td>If a² = b² then a = b</td><td>a=2, b=−2 (really a=b or a=−b)</td></tr>
+  </table>
+
+  <h3>11. Common Proof Mistakes</h3>
+  <ul>
+    <li class="star">Using examples as proof of a universal statement.</li>
+    <li class="star">Proving the <b>converse</b> instead of the original.</li>
+    <li class="star">Circular reasoning (using what you want to prove).</li>
+    <li class="star">Dividing by something that may be zero.</li>
+    <li class="star">Direct proof: assuming the conclusion instead of the hypothesis.</li>
+    <li class="star">Wrong quantifier negation.</li>
+    <li class="star">Contradiction: forgetting to assume the <b>negation</b>, or stopping before a real contradiction.</li>
+    <li class="star">"iff": giving only one direction.</li>
+  </ul>
+
+  <h3>12. Choosing a Proof Strategy</h3>
+  <table>
+    <tr><th>Claim type</th><th>Best method</th></tr>
+    <tr><td>If P then Q</td><td>Direct / contrapositive / contradiction</td></tr>
+    <tr><td>P iff Q</td><td>Prove P→Q <b>and</b> Q→P</td></tr>
+    <tr><td>For all x, P(x)</td><td>Take arbitrary x, show P(x); disprove by counterexample</td></tr>
+    <tr><td>There exists x</td><td>Give a witness and verify; uniqueness: assume two, show equal</td></tr>
+  </table>
+  <div class="tip"><span class="t">Tips</span>
+    <p>Integer claims → try parity (even/odd), divisibility, cases. Real-number claims → inequalities, factorization. Plan backward but <b>write forward</b>.</p>
+  </div>
+  <svg viewBox="0 0 700 230" width="700">
+    <rect x="260" y="8" width="180" height="38" rx="8" fill="#e8f0ff" stroke="#1b2a6b" stroke-width="2"/>
+    <text x="350" y="33" text-anchor="middle" font-size="17" fill="#1b2a6b">Claim type?</text>
+    <g stroke="#1b2a6b" stroke-width="2" fill="none"><line x1="300" y1="46" x2="100" y2="100"/><line x1="330" y1="46" x2="260" y2="100"/><line x1="370" y1="46" x2="440" y2="100"/><line x1="400" y1="46" x2="600" y2="100"/></g>
+    <rect x="20" y="100" width="160" height="40" rx="8" fill="#eaf9ee" stroke="#1b7a3d" stroke-width="2"/><text x="100" y="125" text-anchor="middle" font-size="15" fill="#1b2a6b">If P then Q</text>
+    <rect x="190" y="100" width="140" height="40" rx="8" fill="#fff4e0" stroke="#d9730d" stroke-width="2"/><text x="260" y="125" text-anchor="middle" font-size="15" fill="#1b2a6b">P iff Q</text>
+    <rect x="370" y="100" width="140" height="40" rx="8" fill="#eaf9ee" stroke="#1b7a3d" stroke-width="2"/><text x="440" y="125" text-anchor="middle" font-size="15" fill="#1b2a6b">For all x</text>
+    <rect x="530" y="100" width="150" height="40" rx="8" fill="#e8f0ff" stroke="#1b2a6b" stroke-width="2"/><text x="605" y="125" text-anchor="middle" font-size="15" fill="#1b2a6b">There exists x</text>
+    <text x="100" y="175" text-anchor="middle" font-size="13" fill="#c62828">Direct / Contrapositive</text><text x="100" y="192" text-anchor="middle" font-size="13" fill="#c62828">/ Contradiction</text>
+    <text x="260" y="175" text-anchor="middle" font-size="13" fill="#c62828">Both directions</text><text x="260" y="192" text-anchor="middle" font-size="13" fill="#c62828">P→Q and Q→P</text>
+    <text x="440" y="175" text-anchor="middle" font-size="13" fill="#c62828">Arbitrary x,</text><text x="440" y="192" text-anchor="middle" font-size="13" fill="#c62828">show P(x)</text>
+    <text x="605" y="175" text-anchor="middle" font-size="13" fill="#c62828">Give a witness</text><text x="605" y="192" text-anchor="middle" font-size="13" fill="#c62828">and verify</text>
+    <g stroke="#c62828" stroke-width="1.5"><line x1="100" y1="140" x2="100" y2="158"/><line x1="260" y1="140" x2="260" y2="158"/><line x1="440" y1="140" x2="440" y2="158"/><line x1="605" y1="140" x2="605" y2="158"/></g>
+  </svg>
+  <p class="cap">Proof-strategy chooser</p>
+  <div class="pgno">8</div>
+</div>
+
+<!-- ============ UNIT I : PAGE 8 ============ -->
+<div class="page">
+  <h3>Unit I — Formula Sheet</h3>
+  <div class="formula">p → q ≡ ¬p ∨ q ≡ ¬q → ¬p</div>
+  <div class="formula">¬(p∧q) ≡ ¬p∨¬q &nbsp;|&nbsp; ¬(p∨q) ≡ ¬p∧¬q</div>
+  <div class="formula">¬∀x P(x) ≡ ∃x ¬P(x) &nbsp;|&nbsp; ¬∃x P(x) ≡ ∀x ¬P(x)</div>
+  <p class="arrow">Equivalence proof → prove P→Q and Q→P.</p>
+  <p class="arrow">Universal claim false → one counterexample.</p>
+  <p class="arrow">Proof skeleton: state method → use definitions → justify key steps → conclude.</p>
+
+  <h3>Practice Questions (Unit I)</h3>
+  <ol class="small">
+    <li>Truth table of ¬p ∨ q; show ≡ p→q.</li>
+    <li>Negate: "Every integer n has an integer m with m &gt; n."</li>
+    <li>Translate "A student can graduate only if all required courses are passed".</li>
+    <li>Simplify ¬(p ∧ (¬q ∨ r)).</li>
+    <li>Identify the invalid form: p→q, q, ∴ p.</li>
+    <li>Prove directly: sum of two even integers is even.</li>
+    <li>Contraposition: if n² is odd then n is odd.</li>
+    <li>Counterexample: "Every integer &gt; 1 is prime."</li>
+    <li>Prove n(n+1) is even for every integer n.</li>
+    <li>Why can "5 | n² ⇒ 5 | n" be proved by contradiction / prime factorization?</li>
+  </ol>
+  <h4>Answers</h4>
+  <ol class="small g">
+    <li>Both give T,F,T,T (rows TT,TF,FT,FF).</li>
+    <li>∃n ∈ℤ ∀m ∈ℤ (m ≤ n).</li>
+    <li>G → C (G = graduate, C = all required courses passed).</li>
+    <li>¬p ∨ ¬(¬q ∨ r) ≡ ¬p ∨ (q ∧ ¬r) ≡ (¬p ∨ q) ∧ (¬p ∨ ¬r).</li>
+    <li>Affirming the consequent.</li>
+    <li>a=2k, b=2m ⇒ a+b = 2(k+m), even.</li>
+    <li>n even, n=2k ⇒ n²=4k² even (contrapositive proved).</li>
+    <li>n = 4.</li>
+    <li>Consecutive integers: one is even, so product is even.</li>
+    <li>Exponent of 5 in n² is twice that in n; if n² has a factor 5, n must have it.</li>
+  </ol>
+  <div class="pgno">9</div>
+</div>
+
+<!-- ============ UNIT II : PAGE 1 ============ -->
+<div class="page">
+  <h2 class="unit">UNIT II : Recurrence Relations</h2>
+  <p>A <span class="r">recurrence relation</span> defines each term using <b>earlier terms</b>. <span class="r">Initial conditions</span> give the starting values.</p>
+
+  <h3>1. Definition, Order, Solution</h3>
+  <ul>
+    <li><b>Order</b> = largest gap between aₙ and a previous term used.</li>
+    <li><b>Solution</b> = a sequence satisfying the recurrence AND the initial conditions.</li>
+  </ul>
+  <table>
+    <tr><th>Recurrence</th><th>Order</th><th>Reason</th></tr>
+    <tr><td>aₙ = 2aₙ₋₁</td><td>1</td><td>only previous term</td></tr>
+    <tr><td>aₙ = aₙ₋₁ + aₙ₋₂</td><td>2</td><td>two previous terms</td></tr>
+    <tr><td>aₙ = 3aₙ₋₁ − aₙ₋₃</td><td>3</td><td>largest lag is 3</td></tr>
+    <tr><td>aₙ = aₙ₋₁² + 1</td><td>1 (nonlinear)</td><td>squares the term</td></tr>
+  </table>
+  <p>aₙ = 2aₙ₋₁ alone has many solutions; with a₀ = 3 we get 3, 6, 12, 24, …</p>
+  <svg viewBox="0 0 700 90" width="700">
+    <g fill="#e8f0ff" stroke="#1b2a6b" stroke-width="2"><rect x="10" y="15" width="130" height="50" rx="8"/><rect x="190" y="15" width="150" height="50" rx="8"/><rect x="390" y="15" width="140" height="50" rx="8"/><rect x="570" y="15" width="120" height="50" rx="8"/></g>
+    <g font-size="14" text-anchor="middle" fill="#1b2a6b"><text x="75" y="38">Initial values</text><text x="75" y="55">a₀, a₁ …</text><text x="265" y="38">Recurrence rule</text><text x="265" y="55">aₙ = F(previous)</text><text x="460" y="38">Compute next</text><text x="460" y="55">term(s)</text><text x="630" y="38">Sequence</text><text x="630" y="55">a₀, a₁, …</text></g>
+    <g stroke="#c62828" stroke-width="2"><line x1="140" y1="40" x2="190" y2="40"/><line x1="340" y1="40" x2="390" y2="40"/><line x1="530" y1="40" x2="570" y2="40"/></g>
+  </svg>
+
+  <h3>2. Modelling</h3>
+  <p class="chk">Define aₙ in words → choose index start → write update rule → state initial values → check first few terms.</p>
+  <div class="ex"><span class="t">Bacteria doubling every hour, a₀ = 50</span>
+    <p>aₙ = 2aₙ₋₁ (n≥1): 100, 200, 400… <span class="ans">aₙ = 50·2ⁿ</span></p>
+  </div>
+  <div class="pgno">10</div>
+</div>
+
+<!-- ============ UNIT II : PAGE 2 ============ -->
+<div class="page">
+  <h4>Fibonacci sequence</h4>
+  <div class="formula">F₀ = 0, F₁ = 1, Fₙ = Fₙ₋₁ + Fₙ₋₂ (n ≥ 2)</div>
+  <p>Terms: 0, 1, 1, 2, 3, 5, 8, 13, 21, …</p>
+
+  <h4>Tower of Hanoi</h4>
+  <p>Move n−1 disks away, move the biggest disk once, move the n−1 disks back on top.</p>
+  <div class="formula">T₀ = 0, &nbsp; Tₙ = 2Tₙ₋₁ + 1 &nbsp;⟹&nbsp; Tₙ = 2ⁿ − 1</div>
+  <p>T₁=1, T₂=3, T₃=7, T₄=15.</p>
+
+  <h3>3. Linear Recurrence, Constant Coefficients</h3>
+  <div class="formula">aₙ = c₁aₙ₋₁ + c₂aₙ₋₂ + … + cₖaₙ₋ₖ + f(n)</div>
+  <p><b>f(n) = 0</b> → homogeneous; <b>f(n) ≠ 0</b> → non-homogeneous.</p>
+  <table>
+    <tr><th>Type</th><th>Example</th></tr>
+    <tr><td>Linear homogeneous</td><td>aₙ = 4aₙ₋₁ − 4aₙ₋₂</td></tr>
+    <tr><td>Linear non-homogeneous</td><td>aₙ = 4aₙ₋₁ − 4aₙ₋₂ + 3ⁿ</td></tr>
+    <tr><td>Nonlinear</td><td>aₙ = (aₙ₋₁)² + 1</td></tr>
+    <tr><td>Variable coefficient</td><td>aₙ = n·aₙ₋₁</td></tr>
+  </table>
+
+  <h4>Method: Characteristic Equation</h4>
+  <p>Try <span class="r">aₙ = rⁿ</span> → get the characteristic equation → solve roots → write general solution → use initial conditions.</p>
+  <div class="ex"><span class="t">Distinct roots: aₙ − 5aₙ₋₁ + 6aₙ₋₂ = 0, a₀=1, a₁=4</span>
+    <p>r² − 5r + 6 = 0 ⇒ (r−2)(r−3)=0 ⇒ r = 2, 3.</p>
+    <p>aₙ = C₁2ⁿ + C₂3ⁿ. a₀: C₁+C₂ = 1. a₁: 2C₁+3C₂ = 4 ⇒ C₂=2, C₁=−1.</p>
+    <p><span class="ans">aₙ = −2ⁿ + 2·3ⁿ</span></p>
+  </div>
+  <div class="pgno">11</div>
+</div>
+
+<!-- ============ UNIT II : PAGE 3 ============ -->
+<div class="page">
+  <h4>Repeated roots</h4>
+  <p>Root r with multiplicity m gives: rⁿ, n·rⁿ, n²·rⁿ, … , nᵐ⁻¹·rⁿ.</p>
+  <div class="formula">Multiplicity 2: aₙ = (C₁ + C₂n)rⁿ</div>
+  <div class="ex"><span class="t">aₙ − 4aₙ₋₁ + 4aₙ₋₂ = 0</span>
+    <p>r² − 4r + 4 = (r−2)² = 0 ⇒ r = 2 (twice). <span class="ans">aₙ = (C₁ + C₂n)2ⁿ</span></p>
+  </div>
+
+  <h4>Complex roots</h4>
+  <p>If roots are r = ρ(cosθ ± i sinθ), real solution:</p>
+  <div class="formula">aₙ = ρⁿ [ C₁cos(nθ) + C₂sin(nθ) ]</div>
+
+  <h4>Summary table</h4>
+  <table>
+    <tr><th>Roots</th><th>General form</th></tr>
+    <tr><td>Distinct real r₁…rₖ</td><td>C₁r₁ⁿ + C₂r₂ⁿ + … + Cₖrₖⁿ</td></tr>
+    <tr><td>Repeated, multiplicity 2</td><td>(C₁ + C₂n)rⁿ</td></tr>
+    <tr><td>Repeated, multiplicity 3</td><td>(C₁ + C₂n + C₃n²)rⁿ</td></tr>
+    <tr><td>Complex pair ρe^(±iθ)</td><td>ρⁿ[C₁cos nθ + C₂sin nθ]</td></tr>
+  </table>
+  <div class="warn"><span class="t">Exam Method</span>
+    <p>Write the characteristic equation → factor → state multiplicities → general solution → initial conditions. <span class="r">Most mistakes: treating repeated roots as distinct.</span></p>
+  </div>
+
+  <h3>4. Non-homogeneous Recurrences</h3>
+  <div class="formula">aₙ = aₙ⁽ʰ⁾ (homogeneous part) + aₙ⁽ᵖ⁾ (particular part)</div>
+  <p>Homogeneous part: solve with the forcing term set to 0. Particular part: <i>any one</i> solution of the full equation.</p>
+  <div class="pgno">12</div>
+</div>
+
+<!-- ============ UNIT II : PAGE 4 ============ -->
+<div class="page">
+  <h4>Shift operator &amp; inverse operator</h4>
+  <p><b>E</b>(aₙ) = aₙ₊₁, &nbsp; E²(aₙ) = aₙ₊₂. &nbsp; Difference: <b>Δ = E − 1</b>, so Δaₙ = aₙ₊₁ − aₙ.</p>
+  <p>Example: aₙ₊₂ − 5aₙ₊₁ + 6aₙ = f(n) → (E² − 5E + 6)aₙ = f(n), i.e. F(E)aₙ = f(n).</p>
+  <p>Particular solution: <span class="r">aₙ⁽ᵖ⁾ = [1/F(E)] f(n)</span>.</p>
+  <div class="formula">(1/F(E))·cⁿ = cⁿ / F(c) &nbsp;, provided F(c) ≠ 0</div>
+  <p>Why? E(cⁿ) = c·cⁿ, so F(E) acts like multiplying by F(c).</p>
+  <p class="r">If F(c) = 0 → resonance (failure case): multiply trial by n (or n² if root repeated…).</p>
+
+  <div class="ex"><span class="t">Solve aₙ₊₁ − 3aₙ = 2ⁿ</span>
+    <p>Homogeneous: aₙ₊₁ − 3aₙ = 0 ⇒ C·3ⁿ.</p>
+    <p>Try aₙ⁽ᵖ⁾ = A·2ⁿ: A·2ⁿ⁺¹ − 3A·2ⁿ = −A·2ⁿ = 2ⁿ ⇒ A = −1.</p>
+    <p><span class="ans">aₙ = C·3ⁿ − 2ⁿ</span></p>
+  </div>
+  <div class="ex"><span class="t">Resonance: aₙ₊₁ − 2aₙ = 2ⁿ⁺¹</span>
+    <p>Homogeneous: C·2ⁿ. Trial A·2ⁿ duplicates it → use <b>A·n·2ⁿ</b>.</p>
+    <p>A(n+1)2ⁿ⁺¹ − 2A·n·2ⁿ = 2A·2ⁿ = 2·2ⁿ ⇒ A = 1.</p>
+    <p><span class="ans">aₙ = C·2ⁿ + n·2ⁿ</span></p>
+  </div>
+  <div class="ex"><span class="t">Polynomial forcing: aₙ₊₁ − aₙ = n</span>
+    <p>Δaₙ = n. Since Δ[n(n−1)/2] = n, particular = n(n−1)/2. Homogeneous = C.</p>
+    <p><span class="ans">aₙ = C + n(n−1)/2</span></p>
+  </div>
+  <p class="small">Useful: Δn = 1, Δ(n²) = 2n+1, Δ[n(n−1)/2] = n.</p>
+  <div class="pgno">13</div>
+</div>
+
+<!-- ============ UNIT II : PAGE 5 ============ -->
+<div class="page">
+  <h4>Trial-form guide (particular solution)</h4>
+  <table>
+    <tr><th>Forcing term f(n)</th><th>Trial</th><th>If it overlaps homogeneous part</th></tr>
+    <tr><td>Polynomial of degree d</td><td>polynomial of degree d</td><td>multiply by nˢ (s = multiplicity of root 1)</td></tr>
+    <tr><td>cⁿ</td><td>A·cⁿ</td><td>if c is a root of multiplicity s: A·nˢ·cⁿ</td></tr>
+    <tr><td>P_d(n)·cⁿ</td><td>cⁿ·Q_d(n)</td><td>multiply by nˢ</td></tr>
+    <tr><td>sin nθ or cos nθ</td><td>A cos nθ + B sin nθ</td><td>multiply by n if roots overlap</td></tr>
+  </table>
+  <div class="tip"><span class="t">Operator Safety</span>
+    <p>Always compute F(c) first. Never divide by zero. After finding a particular solution, <b>substitute it back</b> to verify.</p>
+  </div>
+
+  <h3>5. Generating Functions</h3>
+  <div class="formula">G(x) = a₀ + a₁x + a₂x² + … = Σ aₙxⁿ</div>
+  <p>The coefficient of xⁿ in G(x) is aₙ. It turns recurrences into <b>algebra</b>.</p>
+  <table>
+    <tr><th>Sequence aₙ</th><th>G(x)</th></tr>
+    <tr><td>1, 1, 1, 1, …</td><td>1/(1−x)</td></tr>
+    <tr><td>1, c, c², c³, … (aₙ = cⁿ)</td><td>1/(1−cx)</td></tr>
+    <tr><td>0, 1, 2, 3, … (aₙ = n)</td><td>x/(1−x)²</td></tr>
+    <tr><td>0, 1, 4, 9, … (aₙ = n²)</td><td>x(1+x)/(1−x)³</td></tr>
+    <tr><td>Fibonacci 0, 1, 1, 2, …</td><td>x/(1−x−x²)</td></tr>
+  </table>
+  <h4>Algebra rules</h4>
+  <ul>
+    <li><b>Linearity:</b> αG + βH generates αaₙ + βbₙ.</li>
+    <li><b>Product:</b> coeff of xⁿ in G·H is Σₖ aₖbₙ₋ₖ (convolution).</li>
+    <li>Σₙ₌₁^∞ aₙxⁿ = G(x) − a₀.</li>
+    <li>Σₙ₌₁^∞ aₙ₋₁xⁿ = x·G(x).</li>
+    <li>Σₙ₌₀^∞ aₙ₊₁xⁿ = [G(x) − a₀]/x.</li>
+  </ul>
+  <div class="pgno">14</div>
+</div>
+
+<!-- ============ UNIT II : PAGE 6 ============ -->
+<div class="page">
+  <div class="ex"><span class="t">Solve aₙ = 2aₙ₋₁ + 1 (n≥1), a₀ = 0 using G(x)</span>
+    <p>Multiply by xⁿ, sum for n ≥ 1:</p>
+    <p>Left: G(x) − a₀ = G(x). Right: 2x·G(x) + x/(1−x).</p>
+    <p>G(x)(1 − 2x) = x/(1−x) ⇒ G(x) = x/[(1−x)(1−2x)] = 1/(1−2x) − 1/(1−x).</p>
+    <p>Expand: G(x) = Σ (2ⁿ − 1)xⁿ. <span class="ans">aₙ = 2ⁿ − 1</span></p>
+  </div>
+  <div class="ex"><span class="t">Generating function of Fibonacci</span>
+    <p>G(x) − x = xG(x) + x²G(x) ⇒ G(x)(1 − x − x²) = x.</p>
+    <p><span class="ans">G(x) = x / (1 − x − x²)</span></p>
+    <p class="small">For an explicit formula, factor 1−x−x² and use partial fractions.</p>
+  </div>
+
+  <h3>Unit II — Solution Workflow</h3>
+  <table>
+    <tr><th>Question type</th><th>Steps</th></tr>
+    <tr><td>Model a situation</td><td>define aₙ → update rule → initial values → first terms → check</td></tr>
+    <tr><td>Homogeneous</td><td>characteristic eq → roots → multiplicity → general solution → initial values</td></tr>
+    <tr><td>Non-homogeneous</td><td>complementary + particular → add → initial values → verify</td></tr>
+    <tr><td>Inverse operator</td><td>write F(E) → apply to forcing term → check F(c) ≠ 0 → resonance if needed</td></tr>
+    <tr><td>Generating function</td><td>define G(x) → multiply by xⁿ &amp; sum → use shifts → solve G(x) → expand</td></tr>
+  </table>
+
+  <h3>Practice Questions (Unit II)</h3>
+  <ol class="small">
+    <li>a₀=3, aₙ=2aₙ₋₁: find a₀…a₅.</li>
+    <li>Culture triples each hour from 20 bacteria: recurrence + closed form.</li>
+    <li>Solve aₙ − 7aₙ₋₁ + 12aₙ₋₂ = 0, a₀=2, a₁=5.</li>
+    <li>General solution of aₙ − 6aₙ₋₁ + 9aₙ₋₂ = 0.</li>
+    <li>Solve aₙ₊₁ − 4aₙ = 3ⁿ.</li>
+    <li>What changes when c is a characteristic root in trial A·cⁿ?</li>
+    <li>Solve aₙ₊₁ − aₙ = 2n + 1.</li>
+    <li>G(x) for aₙ = 5aₙ₋₁, a₀=4.</li>
+    <li>G(x) for 1,1,1,… and for 1,2,4,8,…</li>
+    <li>Use G(x) to solve aₙ = 2aₙ₋₁ + 1, a₀=0.</li>
+  </ol>
+  <div class="pgno">15</div>
+</div>
+
+<!-- ============ UNIT II : PAGE 7 ============ -->
+<div class="page">
+  <h4>Answers (Unit II)</h4>
+  <ol class="small g">
+    <li>3, 6, 12, 24, 48, 96.</li>
+    <li>a₀=20, aₙ=3aₙ₋₁; aₙ = 20·3ⁿ.</li>
+    <li>Roots 3, 4. C₁+C₂=2, 3C₁+4C₂=5 ⇒ C₁=3, C₂=−1 ⇒ aₙ = 3·3ⁿ − 4ⁿ.</li>
+    <li>(r−3)²=0 ⇒ aₙ = (C₁ + C₂n)3ⁿ.</li>
+    <li>Homogeneous C·4ⁿ. Try A3ⁿ: 3A3ⁿ − 4A3ⁿ = −A3ⁿ = 3ⁿ ⇒ A=−1 ⇒ aₙ = C·4ⁿ − 3ⁿ.</li>
+    <li>Trial duplicates a homogeneous term, so multiply by n (or n^multiplicity).</li>
+    <li>Δ(n²) = 2n+1 ⇒ aₙ = n² + C.</li>
+    <li>G(x) = Σ 4·5ⁿxⁿ = 4/(1 − 5x).</li>
+    <li>1/(1−x) and 1/(1−2x).</li>
+    <li>aₙ = 2ⁿ − 1.</li>
+  </ol>
+  <div class="pgno">16</div>
+</div>
+
+<!-- ============ UNIT III : PAGE 1 ============ -->
+<div class="page">
+  <h2 class="unit">UNIT III : Counting &amp; Relations</h2>
+  <p>Part A: <b>counting</b> (how many objects?). Part B: <b>relations</b> (which elements are linked, and what properties?).</p>
+
+  <h3>1. Inclusion–Exclusion (PIE)</h3>
+  <p>Adding set sizes counts overlaps twice. So add singles, subtract overlaps, add triple back…</p>
+  <div class="formula">|A ∪ B| = |A| + |B| − |A ∩ B|</div>
+  <div class="ex"><span class="t">60 students: 35 Maths, 28 Physics, 15 both</span>
+    <p>|M ∪ P| = 35 + 28 − 15 = <span class="ans">48 study at least one</span></p>
+  </div>
+  <svg viewBox="0 0 600 220" width="520">
+    <rect x="5" y="5" width="590" height="210" fill="none" stroke="#1b2a6b" stroke-width="2"/>
+    <text x="15" y="24" font-size="14" fill="#555">Universal set U</text>
+    <ellipse cx="230" cy="115" rx="130" ry="80" fill="#9fd9d6" fill-opacity=".55" stroke="#2a8c8a" stroke-width="2"/>
+    <ellipse cx="370" cy="115" rx="130" ry="80" fill="#f6c667" fill-opacity=".55" stroke="#c99a2e" stroke-width="2"/>
+    <text x="165" y="120" text-anchor="middle" font-size="16" fill="#1b2a6b">A only</text>
+    <text x="300" y="120" text-anchor="middle" font-size="17" font-weight="700" fill="#1b2a6b">A ∩ B</text>
+    <text x="435" y="120" text-anchor="middle" font-size="16" fill="#1b2a6b">B only</text>
+    <text x="540" y="200" text-anchor="middle" font-size="15" fill="#1b2a6b">Neither</text>
+  </svg>
+  <p class="cap">The overlap A ∩ B is counted twice, so subtract it once.</p>
+
+  <h4>Three sets</h4>
+  <div class="formula">|A∪B∪C| = |A|+|B|+|C| − |A∩B| − |A∩C| − |B∩C| + |A∩B∩C|</div>
+  <p class="small">Why add the triple at the end? A point in all three sets is counted 3 times (singles), removed 3 times (pairs) = 0 times, so add it back once.</p>
+  <div class="pgno">17</div>
+</div>
+
+<!-- ============ UNIT III : PAGE 2 ============ -->
+<div class="page">
+  <div class="ex"><span class="t">Three-set example</span>
+    <p>|A|=40, |B|=35, |C|=30; pairs 12, 10, 8; triple 4.</p>
+    <p>40+35+30 − 12 − 10 − 8 + 4 = <span class="ans">79</span></p>
+  </div>
+
+  <h4>"Neither" and complements</h4>
+  <div class="formula">Neither A nor B = |U| − |A ∪ B|</div>
+  <div class="ex"><span class="t">100 people: 55 tea, 45 coffee, 20 both</span>
+    <p>At least one: 55+45−20 = 80. Neither: 100 − 80 = <span class="ans">20</span></p>
+  </div>
+  <div class="warn"><span class="t">MCQ Key Correction</span>
+    <p>The MCQ bank gives A = 10 for this question. Using its own numbers, the correct answer is <b>20</b> (option C). The key has a typo.</p>
+  </div>
+
+  <h4>General PIE</h4>
+  <div class="formula">|⋃Aᵢ| = Σ|Aᵢ| − Σ|Aᵢ∩Aⱼ| + Σ|Aᵢ∩Aⱼ∩Aₖ| − … + (−1)ⁿ⁻¹|A₁∩…∩Aₙ|</div>
+  <p class="tip" style="padding:2px 14px">Use PIE for surveys, divisibility counts, "at least one" problems. <b>Always state what each set means</b> before substituting.</p>
+
+  <h3>2. Pigeonhole Principle</h3>
+  <div class="formula">n+1 objects in n boxes ⟹ some box has ≥ 2 objects</div>
+  <p>"Boxes" can be months, remainders, scores, categories — any finite set of labels.</p>
+  <table>
+    <tr><th>Situation</th><th>Boxes</th><th>Conclusion</th></tr>
+    <tr><td>13 people</td><td>12 months</td><td>2 share a birth month</td></tr>
+    <tr><td>367 people</td><td>366 birthdays</td><td>2 share a birthday</td></tr>
+    <tr><td>102 students, scores 0–100</td><td>101 scores</td><td>2 same score</td></tr>
+    <tr><td>31 numbers from 1–60</td><td>30 pairs (1,31)…(30,60)</td><td>two differ by 30</td></tr>
+  </table>
+  <div class="pgno">18</div>
+</div>
+
+<!-- ============ UNIT III : PAGE 3 ============ -->
+<div class="page">
+  <h3>3. Generalized Pigeonhole</h3>
+  <div class="formula">n objects in k boxes ⟹ some box has ≥ ⌈n/k⌉ objects</div>
+  <p>⌊x⌋ = floor (round down); ⌈x⌉ = ceiling (round up). ⌈3.2⌉=4, ⌊3.7⌋=3, ⌈4⌉=4, ⌈4.01⌉=5.</p>
+  <svg viewBox="0 0 560 130" width="480">
+    <g fill="#f7f9fc" stroke="#1b2a6b" stroke-width="2"><rect x="15" y="10" width="105" height="90" rx="4"/><rect x="155" y="10" width="105" height="90" rx="4"/><rect x="295" y="10" width="105" height="90" rx="4"/><rect x="435" y="10" width="105" height="90" rx="4"/></g>
+    <g fill="#1b7a8a"><circle cx="45" cy="35" r="10"/><circle cx="85" cy="35" r="10"/></g>
+    <g fill="#e6a82f"><circle cx="185" cy="35" r="10"/><circle cx="225" cy="35" r="10"/><circle cx="205" cy="65" r="10"/></g>
+    <g fill="#3f63b5"><circle cx="325" cy="35" r="10"/><circle cx="365" cy="35" r="10"/></g>
+    <g fill="#8a56b3"><circle cx="465" cy="35" r="10"/><circle cx="505" cy="35" r="10"/><circle cx="485" cy="65" r="10"/></g>
+    <g font-size="14" text-anchor="middle" fill="#1b2a6b"><text x="67" y="120">Box 1</text><text x="207" y="120">Box 2</text><text x="347" y="120">Box 3</text><text x="487" y="120">Box 4</text></g>
+  </svg>
+  <p class="cap">10 objects in 4 boxes ⇒ some box has ⌈10/4⌉ = 3</p>
+
+  <div class="ex"><span class="t">Min. people to guarantee 3 share a birth month</span>
+    <p>Avoid it: at most 2 per month = 2×12 = 24. The 25th forces 3. <span class="ans">25 people</span></p>
+  </div>
+  <div class="ex"><span class="t">101 balls, 10 boxes</span>
+    <p>⌈101/10⌉ = ⌈10.1⌉ = <span class="ans">11 balls in some box</span></p>
+  </div>
+  <div class="formula">To guarantee r objects in one of k boxes: N = (r − 1)k + 1</div>
+  <p class="small">Reason: with only (r−1)k objects every box could hold r−1. One more forces r.</p>
+
+  <h3>4. Relations &amp; Basic Properties</h3>
+  <p>A relation R from A to B is any <b>subset of A × B</b>. If (a,b) ∈ R we write aRb. A relation on A is a subset of A×A.</p>
+  <div class="formula">A × B = {(a,b) : a∈A, b∈B} &nbsp;; &nbsp; |A×B| = mn</div>
+  <p>Number of relations from A to B = <span class="r">2^(mn)</span>. On an n-element set: <span class="r">2^(n²)</span>.</p>
+  <div class="ex"><span class="t">A = {1,2,3,4}, aRb iff a divides b</span>
+    <p><span class="ans">R = {(1,1),(1,2),(1,3),(1,4),(2,2),(2,4),(3,3),(4,4)}</span></p>
+  </div>
+  <div class="pgno">19</div>
+</div>
+
+<!-- ============ UNIT III : PAGE 4 ============ -->
+<div class="page">
+  <h3>Six Properties of Relations</h3>
+  <table>
+    <tr><th>Property</th><th>Definition</th><th>Graph / matrix idea</th></tr>
+    <tr><td class="r">Reflexive</td><td>(a,a) ∈ R for all a</td><td>loop at every vertex; diagonal all 1</td></tr>
+    <tr><td>Irreflexive</td><td>(a,a) ∉ R for all a</td><td>no loops; diagonal all 0</td></tr>
+    <tr><td class="r">Symmetric</td><td>aRb ⇒ bRa</td><td>every arrow has a reverse; M = Mᵀ</td></tr>
+    <tr><td class="r">Antisymmetric</td><td>aRb and bRa ⇒ a = b</td><td>no two-way arrows between distinct vertices</td></tr>
+    <tr><td>Asymmetric</td><td>aRb ⇒ not bRa</td><td>no reverse arrows and no loops</td></tr>
+    <tr><td class="r">Transitive</td><td>aRb and bRc ⇒ aRc</td><td>every 2-step path a→b→c needs a→c</td></tr>
+  </table>
+  <div class="warn"><span class="t">Do NOT confuse</span>
+    <p><b>Symmetric:</b> reverse pairs required. <b>Antisymmetric:</b> reverse pairs between distinct elements forbidden. <b>Asymmetric:</b> reverse forbidden and loops forbidden. A relation can be both symmetric and antisymmetric (e.g. equality).</p>
+  </div>
+  <p class="tip" style="padding:2px 14px">One counterexample disproves a property. To prove it, check all cases or use a structural argument.</p>
+
+  <div class="ex"><span class="t">Test R = {(1,1),(2,2),(3,3),(1,2),(2,1)} on {1,2,3}</span>
+    <p>Reflexive: <span class="g">yes</span> (all diagonal pairs).</p>
+    <p>Symmetric: <span class="g">yes</span> ((1,2) &amp; (2,1) together).</p>
+    <p>Transitive: <span class="g">yes</span> (2-step paths among 1,2 return to 1 or 2, all present).</p>
+    <p>Antisymmetric: <span class="r">no</span> ((1,2) and (2,1) both present, 1≠2).</p>
+    <p><span class="ans">Reflexive, symmetric, transitive; not antisymmetric</span></p>
+  </div>
+  <svg viewBox="0 0 400 170" width="340">
+    <g fill="#e8f0ff" stroke="#1b2a6b" stroke-width="2"><circle cx="60" cy="100" r="22"/><circle cx="200" cy="40" r="22"/><circle cx="320" cy="110" r="22"/></g>
+    <g font-size="18" font-weight="700" text-anchor="middle" fill="#1b2a6b"><text x="60" y="106">1</text><text x="200" y="46">2</text><text x="320" y="116">3</text></g>
+    <g stroke="#1b7a8a" stroke-width="2" fill="none"><line x1="80" y1="92" x2="180" y2="50"/><line x1="218" y1="52" x2="302" y2="98"/><path d="M80 112 Q190 160 298 120"/></g>
+    <path d="M45 80 C35 40 70 40 66 78" stroke="#d9730d" stroke-width="2" fill="none"/>
+  </svg>
+  <p class="cap">Digraph of (1,1),(1,2),(2,3),(1,3): a loop = pair (a,a)</p>
+  <div class="pgno">20</div>
+</div>
+
+<!-- ============ UNIT III : PAGE 5 ============ -->
+<div class="page">
+  <h3>5. Combining &amp; Composing Relations</h3>
+  <table>
+    <tr><th>Operation</th><th>Meaning</th></tr>
+    <tr><td>R ∪ S</td><td>pairs in R or S (or both)</td></tr>
+    <tr><td>R ∩ S</td><td>pairs common to both</td></tr>
+    <tr><td>R − S</td><td>in R but not in S</td></tr>
+    <tr><td>Rᶜ</td><td>pairs of A×A not in R</td></tr>
+    <tr><td>R⁻¹</td><td>{(b,a) : (a,b) ∈ R} — reverse every pair</td></tr>
+  </table>
+
+  <h4>Composition S ∘ R (apply R first, then S)</h4>
+  <div class="formula">S∘R = { (a,c) : ∃b with (a,b)∈R and (b,c)∈S }</div>
+  <svg viewBox="0 0 600 90" width="480">
+    <g fill="#e8f0ff" stroke="#1b2a6b" stroke-width="2"><rect x="10" y="15" width="130" height="55" rx="6"/><rect x="230" y="15" width="130" height="55" rx="6"/><rect x="450" y="15" width="130" height="55" rx="6"/></g>
+    <g font-size="15" text-anchor="middle" fill="#1b2a6b"><text x="75" y="48">A</text><text x="295" y="48">B</text><text x="515" y="48">C</text><text x="185" y="30" fill="#1b7a8a" font-weight="700">R</text><text x="405" y="30" fill="#d9730d" font-weight="700">S</text></g>
+    <line x1="140" y1="42" x2="230" y2="42" stroke="#1b7a8a" stroke-width="2.5"/><line x1="360" y1="42" x2="450" y2="42" stroke="#d9730d" stroke-width="2.5"/>
+  </svg>
+  <div class="ex"><span class="t">R = {(1,2),(2,3)}, S = {(2,4),(3,5)}</span>
+    <p>1→2 (R) then 2→4 (S) gives (1,4). 2→3 (R) then 3→5 (S) gives (2,5).</p>
+    <p><span class="ans">S∘R = {(1,4),(2,5)}</span></p>
+  </div>
+  <div class="tip"><span class="t">Notation Check</span>
+    <p>Some books reverse the order of ∘. In exams, <b>follow your instructor's definition</b>. Here S∘R = "R first, then S".</p>
+  </div>
+
+  <h4>Powers of a relation</h4>
+  <p>R¹ = R, Rⁿ = Rⁿ⁻¹ ∘ R. (a,b) ∈ Rⁿ iff there is a <b>path of length n</b> from a to b.</p>
+  <p class="arrow">R is transitive ⟺ R² ⊆ R (and then Rⁿ ⊆ R for all n).</p>
+  <div class="pgno">21</div>
+</div>
+
+<!-- ============ UNIT III : PAGE 6 ============ -->
+<div class="page">
+  <h3>6. Matrix Representation</h3>
+  <p>For A = {a₁,…,aₙ}: M<sub>R</sub> is an n×n 0-1 matrix with mᵢⱼ = 1 iff (aᵢ,aⱼ) ∈ R. Keep the same order for rows and columns.</p>
+  <div class="ex"><span class="t">A = {1,2,3}, R = {(1,1),(1,2),(2,3)}</span>
+    <p>Row 1 = [1,1,0], Row 2 = [0,0,1], Row 3 = [0,0,0]. <span class="ans">M = [[1,1,0],[0,0,1],[0,0,0]]</span></p>
+  </div>
+  <table>
+    <tr><th>Property</th><th>Matrix test</th></tr>
+    <tr><td>Reflexive</td><td>all diagonal entries = 1</td></tr>
+    <tr><td>Irreflexive</td><td>all diagonal entries = 0</td></tr>
+    <tr><td>Symmetric</td><td>M = Mᵀ</td></tr>
+    <tr><td>Antisymmetric</td><td>for i≠j, mᵢⱼ and mⱼᵢ not both 1</td></tr>
+    <tr><td>Transitive</td><td>Boolean product M⊙M has no 1 where M has 0 (M² ≤ M)</td></tr>
+  </table>
+  <p class="small">Union / intersection → elementwise OR / AND. Composition → <b>Boolean matrix multiplication</b> (AND for products, OR for sums), not ordinary multiplication.</p>
+
+  <h3>7. Equivalence Relations</h3>
+  <div class="formula">Equivalence = Reflexive + Symmetric + Transitive</div>
+  <ul>
+    <li>Equality on any set.</li>
+    <li>Same parity on integers (classes: evens, odds).</li>
+    <li>Congruence mod m: a ≡ b (mod m) iff m | (a − b).</li>
+  </ul>
+  <div class="ex"><span class="t">Congruence mod m is an equivalence relation</span>
+    <p><b>Reflexive:</b> a−a = 0, and m | 0.</p>
+    <p><b>Symmetric:</b> a−b = km ⇒ b−a = (−k)m.</p>
+    <p><b>Transitive:</b> a−b = km, b−c = ℓm ⇒ a−c = (k+ℓ)m. ∎</p>
+  </div>
+  <div class="pgno">22</div>
+</div>
+
+<!-- ============ UNIT III : PAGE 7 ============ -->
+<div class="page">
+  <h4>Equivalence classes &amp; partitions</h4>
+  <div class="formula">[a] = { x ∈ A : x R a }</div>
+  <ul>
+    <li>Classes are non-empty; any two are <b>identical or disjoint</b>; their union is A.</li>
+    <li>So an equivalence relation <span class="r">partitions</span> the set. Conversely, every partition gives an equivalence relation.</li>
+  </ul>
+  <div class="ex"><span class="t">Classes modulo 3</span>
+    <p>[0] = {…,−6,−3,0,3,6,…} &nbsp; [1] = {…,−5,−2,1,4,7,…} &nbsp; [2] = {…,−4,−1,2,5,8,…}</p>
+  </div>
+
+  <h3>8. Partial &amp; Total Orders</h3>
+  <div class="formula">Partial order = Reflexive + Antisymmetric + Transitive</div>
+  <p>A set with a partial order is a <b>poset</b> (A, ≼). Elements a, b are <b>comparable</b> if a≼b or b≼a; otherwise <b>incomparable</b>.</p>
+  <p><b>Total order</b> = partial order where <i>every pair is comparable</i>.</p>
+  <p><b>Chain</b> = subset with all pairs comparable. <b>Antichain</b> = subset of pairwise incomparable elements.</p>
+  <table>
+    <tr><th>Relation</th><th>Partial?</th><th>Total?</th><th>Reason</th></tr>
+    <tr><td>≤ on integers</td><td>Yes</td><td>Yes</td><td>all pairs comparable</td></tr>
+    <tr><td>⊆ on a power set</td><td>Yes</td><td>Usually no</td><td>{a}, {b} incomparable</td></tr>
+    <tr><td>Divisibility on positive integers</td><td>Yes</td><td>No</td><td>2 and 3 incomparable</td></tr>
+    <tr><td>Strict &lt;</td><td>No (irreflexive)</td><td>strict total</td><td>not reflexive</td></tr>
+    <tr><td>Same parity</td><td>No</td><td>No</td><td>symmetric, not antisymmetric</td></tr>
+  </table>
+  <div class="warn"><span class="t">Domain Warning</span>
+    <p>Divisibility is a partial order on <b>positive</b> integers. On all integers antisymmetry fails: 2 | −2 and −2 | 2 but 2 ≠ −2. The MCQ bank says "integers" but intends positive integers. Follow your exam's stated domain.</p>
+  </div>
+  <div class="pgno">23</div>
+</div>
+
+<!-- ============ UNIT III : PAGE 8 ============ -->
+<div class="page">
+  <h3>9. Hasse Diagrams</h3>
+  <p>A simplified drawing of a finite poset: smaller elements lower, larger higher. Draw an edge a—b only if <span class="r">b covers a</span> (a ≺ b with no c, a ≺ c ≺ b).</p>
+  <ol>
+    <li>List elements and the order relation.</li>
+    <li>Remove self-loops (reflexivity understood).</li>
+    <li>Remove transitive edges — keep cover relations only.</li>
+    <li>Minimal elements at bottom, maximal at top; join cover pairs by lines (no arrows).</li>
+  </ol>
+  <div class="two">
+    <div>
+      <svg viewBox="0 0 260 250" width="230">
+        <g stroke="#555" stroke-width="2"><line x1="130" y1="40" x2="60" y2="110"/><line x1="130" y1="40" x2="200" y2="110"/><line x1="60" y1="120" x2="130" y2="195"/><line x1="200" y1="120" x2="130" y2="195"/></g>
+        <g fill="#eaf6f5" stroke="#2a8c8a" stroke-width="2"><ellipse cx="130" cy="30" rx="30" ry="18"/><ellipse cx="55" cy="115" rx="26" ry="18"/><ellipse cx="205" cy="115" rx="26" ry="18"/><ellipse cx="130" cy="205" rx="22" ry="18"/></g>
+        <g font-size="14" text-anchor="middle" fill="#1b2a6b"><text x="130" y="35">{a,b}</text><text x="55" y="120">{a}</text><text x="205" y="120">{b}</text><text x="130" y="210">∅</text></g>
+      </svg>
+      <p class="cap">P({a,b}) under ⊆</p>
+    </div>
+    <div>
+      <svg viewBox="0 0 260 250" width="230">
+        <g stroke="#555" stroke-width="2"><line x1="130" y1="40" x2="60" y2="110"/><line x1="130" y1="40" x2="200" y2="110"/><line x1="60" y1="120" x2="130" y2="195"/><line x1="200" y1="120" x2="130" y2="195"/></g>
+        <g fill="#fff4dc" stroke="#d9a21f" stroke-width="2"><circle cx="130" cy="30" r="20"/><circle cx="55" cy="115" r="20"/><circle cx="205" cy="115" r="20"/><circle cx="130" cy="205" r="20"/></g>
+        <g font-size="16" text-anchor="middle" fill="#1b2a6b"><text x="130" y="36">6</text><text x="55" y="121">2</text><text x="205" y="121">3</text><text x="130" y="211">1</text></g>
+      </svg>
+      <p class="cap">Divisors of 6 by divisibility</p>
+    </div>
+  </div>
+
+  <h4>Minimal / Maximal vs Least / Greatest</h4>
+  <table>
+    <tr><th>Term</th><th>Meaning</th><th>Note</th></tr>
+    <tr><td>Minimal</td><td>nothing strictly below it</td><td>can be several</td></tr>
+    <tr><td>Least</td><td>a ≼ x for <b>every</b> x</td><td>unique if exists</td></tr>
+    <tr><td>Maximal</td><td>nothing strictly above it</td><td>can be several</td></tr>
+    <tr><td>Greatest</td><td>x ≼ g for <b>every</b> x</td><td>unique if exists</td></tr>
+  </table>
+  <p class="small">Minimal does not mean least! Check comparability with all elements first.</p>
+  <div class="pgno">24</div>
+</div>
+
+<!-- ============ UNIT III : PAGE 9 ============ -->
+<div class="page">
+  <h4>Bounds, Meet &amp; Join</h4>
+  <p><b>Lower bound</b>: below every element of S. <b>Upper bound</b>: above every element of S.</p>
+  <p><span class="r">Meet (a ∧ b)</span> = greatest lower bound (GLB). <span class="r">Join (a ∨ b)</span> = least upper bound (LUB).</p>
+  <div class="ex"><span class="t">In {1,2,3,6} under divisibility</span>
+    <p>2 ∧ 3 = 1 (gcd) &nbsp;&nbsp; 2 ∨ 3 = 6 (lcm). Also 2 and 3 are incomparable.</p>
+  </div>
+
+  <h3>10. Lattices &amp; Sublattices</h3>
+  <div class="formula">Lattice: for EVERY pair a, b, both a ∧ b and a ∨ b exist</div>
+  <p>In the power set P(S) under ⊆: &nbsp;<b>A ∧ B = A ∩ B</b>, &nbsp;<b>A ∨ B = A ∪ B</b>.</p>
+  <div class="ex"><span class="t">P({a,b}) is a lattice</span>
+    <p>Elements: ∅, {a}, {b}, {a,b}. Intersection = greatest common subset; union = least common superset.</p>
+    <p>{a} ∧ {b} = ∅ and {a} ∨ {b} = {a,b}. <span class="ans">Lattice ✓</span></p>
+  </div>
+  <p><b>Sublattice</b>: non-empty subset L′ of a lattice L that is closed under the <b>inherited meet and join</b>: a,b ∈ L′ ⇒ a∧b ∈ L′ and a∨b ∈ L′.</p>
+  <div class="ex"><span class="t">L′ = {∅, {a}, {a,b}} in P({a,b})</span>
+    <p>All pairwise intersections and unions stay in {∅, {a}, {a,b}}. <span class="ans">It is a sublattice</span></p>
+  </div>
+  <div class="tip"><span class="t">Fast Sublattice Test</span>
+    <p>Take every pair, compute meet &amp; join in the original lattice. If any result falls outside the subset → <b>not</b> a sublattice. Being a subset alone is not enough.</p>
+  </div>
+  <div class="pgno">25</div>
+</div>
+
+<!-- ============ UNIT III : PAGE 10 ============ -->
+<div class="page">
+  <h3>Unit III — Summary Tables</h3>
+  <table>
+    <tr><th>Topic</th><th>Formula / rule</th></tr>
+    <tr><td>Two-set PIE</td><td>|A∪B| = |A|+|B|−|A∩B|</td></tr>
+    <tr><td>Three-set PIE</td><td>singles − pairs + triple</td></tr>
+    <tr><td>Neither</td><td>|U| − |A∪B|</td></tr>
+    <tr><td>Pigeonhole</td><td>n+1 objects, n boxes ⇒ a box has ≥ 2</td></tr>
+    <tr><td>Generalized</td><td>some box has ≥ ⌈n/k⌉</td></tr>
+    <tr><td>Guarantee r in k boxes</td><td>(r−1)k + 1 objects</td></tr>
+  </table>
+  <table>
+    <tr><th>Structure</th><th>Required</th></tr>
+    <tr><td>Equivalence relation</td><td>reflexive + symmetric + transitive</td></tr>
+    <tr><td>Partial order (poset)</td><td>reflexive + antisymmetric + transitive</td></tr>
+    <tr><td>Total order</td><td>partial order + all pairs comparable</td></tr>
+    <tr><td>Lattice</td><td>poset + every pair has meet &amp; join</td></tr>
+    <tr><td>Sublattice</td><td>subset closed under meet &amp; join</td></tr>
+    <tr><td>Hasse diagram</td><td>cover relations only; no loops, no transitive edges</td></tr>
+  </table>
+
+  <h3>Practice Questions (Unit III)</h3>
+  <ol class="small">
+    <li>80 students: 46 C++, 38 Python, 20 both. At least one? Neither?</li>
+    <li>Three sets 30, 25, 20; pairs 8, 7, 6; triple 3. Union?</li>
+    <li>Min. students to guarantee 4 share a birth month?</li>
+    <li>101 balls in 10 boxes: guaranteed occupancy?</li>
+    <li>Test properties of R = {(1,1),(2,2),(3,3),(1,2),(2,1)} on {1,2,3}.</li>
+    <li>|A|=3, |B|=4: number of relations from A to B?</li>
+    <li>R = {(1,2),(2,3)}, S = {(2,4),(3,5)}: find S∘R.</li>
+    <li>0-1 matrix for A = {1,2,3}, R = {(1,1),(1,3),(2,1)}.</li>
+    <li>Prove congruence mod m is an equivalence relation.</li>
+    <li>Why is divisibility on positive integers partial but not total?</li>
+    <li>Hasse diagram of P({a,b}); find {a}∧{b} and {a}∨{b}.</li>
+    <li>Is {∅,{a},{a,b}} a sublattice of P({a,b})?</li>
+  </ol>
+  <div class="pgno">26</div>
+</div>
+
+<!-- ============ UNIT III : PAGE 11 ============ -->
+<div class="page">
+  <h4>Answers (Unit III)</h4>
+  <ol class="small g">
+    <li>Union = 46+38−20 = 64; neither = 80−64 = 16.</li>
+    <li>30+25+20−8−7−6+3 = 57.</li>
+    <li>(4−1)·12 + 1 = 37 students.</li>
+    <li>⌈101/10⌉ = 11.</li>
+    <li>Reflexive yes, symmetric yes, antisymmetric NO (1,2 both ways), transitive yes.</li>
+    <li>|A×B| = 12 pairs ⇒ 2¹² = 4096 relations.</li>
+    <li>S∘R = {(1,4),(2,5)} (R first, then S).</li>
+    <li>M = [[1,0,1],[1,0,0],[0,0,0]].</li>
+    <li>Reflexive: m | (a−a); symmetric: m|(a−b) ⇒ m|(b−a); transitive: m|(a−b), m|(b−c) ⇒ m|(a−c).</li>
+    <li>Reflexive, antisymmetric, transitive on positive integers; 2 and 3 incomparable ⇒ not total.</li>
+    <li>Bottom ∅; middle {a}, {b}; top {a,b}. Meet = ∅; join = {a,b}.</li>
+    <li>Yes — all pairwise unions and intersections stay inside the subset.</li>
+  </ol>
+  <div class="pgno">27</div>
+</div>
+
+<!-- ============ RAPID REVISION ============ -->
+<div class="page">
+  <h2 class="unit">★ Final Rapid Revision ★</h2>
+  <p>Read this the night before the midterm. It's a checklist, not a replacement for the derivations.</p>
+
+  <h3>Unit I</h3>
+  <ul>
+    <li class="chk">p→q false only for p=T, q=F; p→q ≡ ¬p ∨ q.</li>
+    <li class="chk">Contrapositive ≡ original; converse &amp; inverse are not.</li>
+    <li class="chk">De Morgan: negate each part, switch ∧ ↔ ∨.</li>
+    <li class="chk">Quantifier negation: ¬∀ = ∃¬, ¬∃ = ∀¬ (work from outside inward).</li>
+    <li class="chk">P↔Q: prove both P→Q and Q→P.</li>
+    <li class="chk">Direct: assume P → Q. Contrapositive: assume ¬Q → ¬P. Contradiction: assume ¬S → impossibility.</li>
+    <li class="chk">One counterexample kills a universal claim; examples never prove one.</li>
+  </ul>
+
+  <h3>Unit II</h3>
+  <ul>
+    <li class="chk">Initial conditions are part of the solution; fix n=0 vs n=1.</li>
+    <li class="chk">Try aₙ = rⁿ → characteristic equation.</li>
+    <li class="chk">Distinct roots → ΣCᵢrᵢⁿ; repeated root (mult. m) → rⁿ × polynomial of degree m−1.</li>
+    <li class="chk">Non-homogeneous = complementary + particular.</li>
+    <li class="chk">Forcing cⁿ: compute F(c); if F(c)=0 multiply trial by n (or n^mult.).</li>
+    <li class="chk">G(x) = Σaₙxⁿ; know 1/(1−x), 1/(1−cx), x/(1−x)² and shift identities.</li>
+  </ul>
+
+  <h3>Unit III</h3>
+  <ul>
+    <li class="chk">PIE: 2 sets add − overlap; 3 sets singles − pairs + triple.</li>
+    <li class="chk">Pigeonhole: some box ≥ ⌈n/k⌉; to guarantee r need (r−1)k+1.</li>
+    <li class="chk">Equivalence = R+S+T; Partial order = R+A+T; Total order adds comparability.</li>
+    <li class="chk">Matrix mᵢⱼ=1 iff (aᵢ,aⱼ)∈R; symmetry ⇔ M=Mᵀ.</li>
+    <li class="chk">S∘R = R first, then S.</li>
+    <li class="chk">Hasse: remove loops &amp; transitive edges.</li>
+    <li class="chk">Lattice: every pair has meet and join. Sublattice: closed under both.</li>
+  </ul>
+  <div class="pgno">28</div>
+</div>
+
+<!-- ============ EXAM HABITS ============ -->
+<div class="page">
+  <h3>Top 10 Exam-Writing Habits</h3>
+  <ol>
+    <li>Define symbols and the domain before starting a proof or counting problem.</li>
+    <li>Write the formula first, then substitute numbers.</li>
+    <li>In PIE, label each set and show the overlap term.</li>
+    <li>In pigeonhole, clearly name the <b>objects</b> and the <b>boxes</b>.</li>
+    <li>For relation properties, quote the exact definition; give a counterexample if it fails.</li>
+    <li>In recurrences, state initial conditions before the closed form.</li>
+    <li>Record root multiplicities; never skip the repeated-root rule.</li>
+    <li>For generating functions, start sums at the right index and separate omitted initial terms.</li>
+    <li>For Hasse diagrams, justify each edge as a cover relation — no transitive edges.</li>
+    <li>Finally, substitute your answer back or do a quick sanity check.</li>
+  </ol>
+
+  <div class="warn"><span class="t">Alignment Note: errors in practice material</span>
+    <p>• MCQ bank: tea/coffee "neither" key says 10, but the formula gives <b>20</b>.</p>
+    <p>• MCQ bank: divisibility question says "integers"; the standard partial-order result needs <b>positive integers</b> (on all integers antisymmetry fails).</p>
+    <p>• The MCQ bank excluded lattices, sublattices and Hasse diagrams, but your syllabus includes them — they are covered above.</p>
+  </div>
+
+  <div class="box"><span class="t">Final Advice</span>
+    <p>Spend most practice time on:</p>
+    <p class="chk">truth-table / equivalence manipulation &amp; proof selection,</p>
+    <p class="chk">characteristic-root cases &amp; non-homogeneous recurrences,</p>
+    <p class="chk">PIE calculations, relation-property checks &amp; Hasse diagrams.</p>
+    <p>A correct setup earns most of the method marks. <span class="r">All the best! ✎</span></p>
+  </div>
+  <div class="pgno">29</div>
+</div>
+
+</body>
+</html>
