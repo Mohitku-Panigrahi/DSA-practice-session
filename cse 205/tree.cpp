@@ -27,6 +27,15 @@ void inorder(Node *root)
     inorder(root->right);
 }
 
+void postorder(Node *root){
+    if(root==NULL){
+        return;
+    }
+    postorder(root->left);
+    postorder(root->right); //only diff is this part
+    cout<<root->data<<" ";
+};
+
 int main(){
     Node *root= createNode(10);
 
