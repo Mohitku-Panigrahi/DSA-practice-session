@@ -36,6 +36,15 @@ void postorder(Node *root){
     cout<<root->data<<" ";
 };
 
+void preorder(Node *root){
+    if(root==NULL){
+        return;
+    }
+    cout<<root->data<<" ";
+    preorder(root->left);
+    preorder(root->right);
+}
+
 int main(){
     Node *root= createNode(10);
 
@@ -47,6 +56,6 @@ int main(){
 
     cout<<"Inorder Traversal: ";
 
-    inorder(root);
+    preorder(root);
     return 0;
 }
