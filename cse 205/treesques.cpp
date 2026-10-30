@@ -1,12 +1,13 @@
 #include<iostream>
 using namespace std;
+//Node creation
 struct Node
 {
     int data;
     Node *left;
     Node *right;
 };
-
+//insert node
 Node *createNode(int value)
 {
     Node *newNode = new Node();
@@ -15,4 +16,7 @@ Node *createNode(int value)
     newNode->right=NULL;
     return newNode;
 }
+
+//Insertion
+Node*insert(Node *)
 
