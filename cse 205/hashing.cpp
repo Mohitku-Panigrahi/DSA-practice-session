@@ -3,3 +3,4 @@
 // m=50 slots hold n=200 keys (chaining , uniform hashing). Expected comparisons in an unsuccessful search?in a successful one??
 
 //keys 12,18,13,2,3,,23,5,15 go into an empty table of length 10 with h(k)= k mod 10 and linear probing. Give the final table
+//for the same tables as 
